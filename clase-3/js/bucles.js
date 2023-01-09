@@ -128,6 +128,7 @@ const primo = (number) => {
 }
 console.log(primo (112))
 
+console.clear()
 
 // - Crea una función que reciba un número entero e imprima un lista de números impares como ésta:
 //   Si recibe un 6 imprimirá esta lista.
@@ -139,18 +140,17 @@ console.log(primo (112))
 //   11 9 7 5 3 1                                                                                               
 
 
-// const printList = (number) => {
-//     let contador = 0;
-//     for (let index = 0; index <= number; index++) {
-//         // console.log(index)
-//         for (let j = 0; j < number*2; j++) {
-//             if(j%2===1){
-//                 console.log(j)
-//             }
-//         }
-//     }
-// }
-// printList(6)
+const printList = (number) => {
+    let odd = '';
+    
+    for (let index =1 ; index <= number*2; index++) {
+        if( index%2!==0){
+            odd += index + ' '
+            console.log(odd.split('').reverse().join(''))
+        }
+    }
+}
+printList(6)
 
 // - Crea una función que reciba un array de 10 números, imprime por consola cada número, su cuadrado y su cubo en este formato:
 //   "Número: 2 - Cuadrado: 4 - Cubo: 8".
@@ -159,7 +159,7 @@ console.log(primo (112))
 
 const pirntArray = (array) =>{
     for (let index = 1; index <= array.length; index++) {
-        console.log(`Número: ${index} - Cuadrado: ${index*index} - Cubo: ${index*index*index}`)
+        console.log(`Número: ${index} - Cuadrado: ${Math.pow(index, 2)} - Cubo: ${Math.pow(index, 3)}`)
     }
     
 }
@@ -168,41 +168,84 @@ pirntArray([1,2,3,4,5,6,7,8,9,10])
 // - Crea una función que reciba una palabra e imprima por consola esa palabra pero con las vocales en mayúscula.
 
 const printWord = (word) => {
-    let vocals = ['a','e','i','o','u']
-    for (let index = 0; index < word.length; index++) {
-        if (vocals.indexOf(word[index])!== -1){
-            
-            console.log(word[index].toUpperCase())
-        }else{
-            console.log(word[index])
+    let vowels = ['a','e','i','o','u']
+    let newWord = '';
+    for (const letter of word) {
+        if(vowels.indexOf(letter.toLowerCase()) !== -1){
+            newWord = newWord + letter.toUpperCase()
+        } else {
+            newWord = newWord +letter
         }
     }
+    console.log(newWord)
     
 }
 printWord('buenos dias')
 
 // - Crea una función que reciba una frase e imprim el número de veces que se repite cada vocal
 
-const countVocals = (frase) => {
-    let vocals = 'aeiouAEIOU';
-    let contador = 0;
-    for (let index = 0; index < frase.length; index++) {
-        if (vocals.indexOf(frase[index])!== -1){
-            
-            contador= contador +1;
+const countVocals = (sentence) => {
+    
+    let a = 0;
+    let e = 0;
+    let i = 0;
+    let o = 0;
+    let u = 0;
+    
+    for (const letter of sentence) {
+        if(letter === 'a'){
+            a = a + 1
+        } else if (letter === 'e'){
+            e = e + 1
+        } else if (letter === 'i'){
+            i = i + 1
+        }else if (letter === 'o'){
+            o = o + 1
+        }else if (letter === 'u'){
+            u = u + 1
         }
-        
     }
-    console.log(`Hay ${contador} vocales`);
+    console.log(`la a se repite ${a}`)
+    console.log(`la a se repite ${e}`)
+    console.log(`la a se repite ${i}`)
+    console.log(`la a se repite ${o}`)
+    console.log(`la a se repite ${u}`)
+    
+    
 }
 countVocals('hola me llamo elvira')
 
-console.clear()
-// - Crea una función que reciba dos palabras e intercale las letras de cada una para formar una nueva palabra. Si la función recibe (hola, adios) el resultado será "haodliao", pero si recibe (adios, hola) el resultado será "ahdoiloa"
+// - Crea una función que reciba dos palabras e intercale las letras de cada una para formar una nueva palabra. 
+// Si la función recibe (hola, adios) el resultado será "haodliao", pero si recibe (adios, hola) el resultado 
+// será "ahdoiloa"
 
-const intercalado = (a, b) => {
 
+const intercalado = (word1, word2) => {
+    let newWord = ''
+    let countWord = 0;
+
+    if (word1.length > word2.length){
+        countWord = word2.length
+    } else {
+        countWord = word1.length
+    }
+
+    for (let index = 0; index < countWord; index++) {
+        newWord = newWord + (word1[index] + word2[index])
+    }
+    console.log(newWord)
 }
-intercalado('hola', 'adios')
+intercalado('elvira', 'hola')
 
 // - Crea una función que reciba una palabra e imprima la misma palabra en orden inverso conservando las mayúsculas y las minúsculas. Si recibe "Mariposas" deberá imprimir "sasopiraM"
+
+const reverse = (word) => {
+    let newWord = '';
+
+    for (let index = word.length -1; index >= 0; index--) {
+        
+        newWord = newWord + (word[index]) 
+    }
+    console.log(newWord)
+}
+reverse('Mariposas')
